@@ -12,7 +12,7 @@ const createStory = async (req, res) => {
         const story = await doc.save()
         return res.status(200).json(story)
     } catch (error) {
-        return res.status(400).json({ error: error.message })
+        return res.status(500).json({ error: error.message })
     }
 }
 
@@ -22,7 +22,13 @@ const updateStory = async (req, res) => {
 
 
 const getStories = async (req, res) => {
-    return res.send('This is the getStories function')
+    try {
+        const stories = await Story.find().sort({ createdAt: -1 }).populate('author').exec();
+
+        return res.status(200).json(stories)
+    } catch (error) {
+        return res.status(500).json({ error: error.message })
+    }
 }
 
 
