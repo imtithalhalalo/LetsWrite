@@ -1,5 +1,19 @@
+const Story = require('../models/story')
+
 const createStory = async (req, res) => {
-    return res.send('This is the create function')
+    try {
+        const doc = new Story({
+            title: req.body.title,
+            text: req.body.text,
+            poster: req.body.poster,
+            author: req.userId
+        })
+
+        const story = await doc.save()
+        return res.status(200).json(story)
+    } catch (error) {
+        return res.status(400).json({ error: error.message })
+    }
 }
 
 const updateStory = async (req, res) => {
