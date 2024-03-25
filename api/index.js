@@ -11,6 +11,7 @@ app.get("/", (req, res) => {
     return res.send("Hello from node server!")
 })
 app.use("/api/user", require("./routes/user.routes"))
+app.use('/api/stories', require('./routes/stories.routes'))
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
