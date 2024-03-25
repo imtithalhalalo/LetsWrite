@@ -11,6 +11,10 @@ const storySchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    text: {
+        type: String,
+        required: true
+    },
     poster: {
         type: String
     },
