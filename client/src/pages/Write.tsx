@@ -27,7 +27,7 @@ function Write() {
                     </div>
 
                     <div className="mb-3 rounded">
-                        <button type="submit" className="btn btn-primary">Publish</button>
+                        <button type="submit" className="btn btn-info">Publish</button>
                     </div>
 
                 </form>
