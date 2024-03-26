@@ -24,7 +24,7 @@ function Story() {
                         </div>
                     </div>
                 </div>
-                <h4 className="text-primary lead fw-bold mt-5">Published by iCodeLand</h4>
+                <h4 className="text-info lead fw-bold mt-5">Published by iCodeLand</h4>
                 <p className="text-secondary lead fw-bold mt-2"><FaEye className="me-2" />Seen by 50</p>
                 <p className="lead mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint dolorem minima harum facilis iusto nemo quasi ut fugiat, a quod laboriosam nulla dolor amet esse optio voluptatum tempora earum. Impedit.</p>
             </div>

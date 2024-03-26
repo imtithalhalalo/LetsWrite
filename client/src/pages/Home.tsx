@@ -13,11 +13,11 @@ const Home = () => {
           </div>
           <div className="col-md-6 mt-5 mt-md-0 order-md-first">
               <div>
-                  <h1 className="text-primary text-uppercase fs-1 fw-bold">Write Your Own Stories And Share it with Everyone!</h1>
+                  <h1 className="text-info text-uppercase fs-1 fw-bold">Write Your Own Stories And Share it with Everyone!</h1>
                   <p className="mt-4 text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, tenetur
                       sequi odit ipsam iusto cupiditate totam aut eligendi dolorem vero, repudiandae magni laudantium
                       illum impedit nulla quis et, at omnis?</p>
-                  <Link to="/write"><button className="btn btn-primary px-3 my-3 fw-bold">Write a Story</button></Link>
+                  <Link to="/write"><button className="btn btn-info px-3 my-3 fw-bold">Write a Story</button></Link>
               </div>
           </div>
       </div>
@@ -38,21 +38,21 @@ const Home = () => {
                       <img src={DefaultPoster} alt="" height="300px" width="200px" />
                   </div>
                   <h2 className="lead fw-bold my-4">Story 1</h2>
-                  <Link to="/story/:id"><button className="btn btn-primary text-white lead fw-bold mb-5">Read Story</button></Link>
+                  <Link to="/story/:id"><button className="btn btn-info text-white lead fw-bold mb-5">Read Story</button></Link>
               </div>
               <div className="col-md-6 col-lg-4 text-center text-decoration-none">
                   <div className="shadow rounded">
                       <img src={DefaultPoster} alt="" height="300px" width="200px" />
                   </div>
                   <h2 className="lead fw-bold my-4">Story 2</h2>
-                  <Link to="/story/:id"><button className="btn btn-primary text-white lead fw-bold mb-5">Read Story</button></Link>
+                  <Link to="/story/:id"><button className="btn btn-info text-white lead fw-bold mb-5">Read Story</button></Link>
               </div>
               <div className="col-md-6 col-lg-4 text-center text-decoration-none">
                   <div className="shadow rounded">
                       <img src={DefaultPoster} alt="" height="300px" width="200px" />
                   </div>
                   <h2 className="lead fw-bold my-4">Story 3</h2>
-                  <Link to="/story/:id"><button className="btn btn-primary text-white lead fw-bold mb-5">Read Story</button></Link>
+                  <Link to="/story/:id"><button className="btn btn-info text-white lead fw-bold mb-5">Read Story</button></Link>
               </div>
           </div>
       </div>
