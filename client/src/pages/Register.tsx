@@ -24,7 +24,7 @@ function Register() {
                             <p>Already a Member? <Link to="/login">Sign In</Link></p>
                         </div>
 
-                        <button type="submit" className="btn btn-primary">Sign Up</button>
+                        <button type="submit" className="btn btn-info">Sign Up</button>
                     </form>
                 </div>
             </div>

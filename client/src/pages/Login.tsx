@@ -20,7 +20,7 @@ function Login() {
                             <p>Not a Member? <Link to="/register">Sign Up</Link></p>
                         </div>
 
-                        <button type="submit" className="btn btn-primary">Sign In</button>
+                        <button type="submit" className="btn btn-info">Sign In</button>
                     </form>
                 </div>
             </div>
