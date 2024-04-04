@@ -5,10 +5,12 @@ const mongoose = require("mongoose");
 const multer = require('multer')
 const fs = require('fs')
 const protectAuth = require('./middlewares/protectAuth')
+const cors = require('cors')
 
 const app = express();
 
 app.use(express.json())
+app.use(cors())
 
 const storage = multer.diskStorage({
     destination: (_, __, cb) => {
