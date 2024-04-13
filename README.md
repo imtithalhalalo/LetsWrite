@@ -61,7 +61,7 @@ Welcome to our MERN Story Sharing Application! This project focuses on building 
 ![Login Page](https://github.com/imtithalhalalo/LetsWrite/blob/main/public/images/login.png)
 
 ## Register Page
-![Register Page](https://github.com/imtithalhalalo/LetsWrite/blob/main/public/images/filter.png)
+![Register Page](https://github.com/imtithalhalalo/LetsWrite/blob/main/public/images/register.png)
 
 ## Write Page
 ![Write Page](https://github.com/imtithalhalalo/LetsWrite/blob/main/public/images/write.png)
