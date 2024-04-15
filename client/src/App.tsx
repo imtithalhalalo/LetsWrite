@@ -6,6 +6,10 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Story from "./pages/Story";
 import Write from "./pages/Write";
+import { useEffect } from "react";
+import axios from "axios";
+import { account } from "./features/authSlice";
+import { useAppDispatch } from "./app/hooks";
 
 
 const Layout = () => {
@@ -46,6 +50,17 @@ const router = createBrowserRouter([
 ])
 
 function App() {
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+
+    if (token) {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+      dispatch(account())
+    }
+  }, [dispatch]);
+  
   return (
     <RouterProvider router={router} />
   )
