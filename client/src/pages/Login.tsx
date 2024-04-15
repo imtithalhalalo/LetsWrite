@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"
-import { useAppDispatch } from "../app/hooks";
+import { Link, Navigate, useNavigate } from "react-router-dom"
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { login } from "../features/authSlice";
 
 function Login() {
@@ -9,7 +9,8 @@ function Login() {
         password: ''
     })
     const dispatch = useAppDispatch();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const user = useAppSelector((state) => state.auth.data);
 
     const handleChange = (e: any) => {
         setInputs((prev) => ({
@@ -27,6 +28,10 @@ function Login() {
         }
 
         navigate('/')
+    }
+
+    if (user && window.localStorage.getItem('token')) {
+        return <Navigate to='/' />   
     }
 
     return (

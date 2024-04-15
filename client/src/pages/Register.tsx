@@ -1,9 +1,11 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useNavigate, Navigate } from "react-router-dom"
 import { useState } from "react";
-import { useAppDispatch } from "../app/hooks";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { register } from '../features/authSlice';
 
 function Register() {
+    const user = useAppSelector((state) => state.auth.data)
+
     const [inputs, setInputs] = useState({
         username: '',
         email: '',
@@ -28,6 +30,10 @@ function Register() {
         }
 
         navigate('/')
+    }
+
+    if (user && window.localStorage.getItem('token')) {
+        return <Navigate to='/' />   
     }
 
     return (
