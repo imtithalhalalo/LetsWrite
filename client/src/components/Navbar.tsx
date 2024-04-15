@@ -5,13 +5,13 @@ import { logout } from '../features/authSlice'
 
 
 function Navbar() {
-    const user = useAppSelector((state) => state.auth.data) || { username: '' }
+    const user: any = useAppSelector((state) => state.auth.data)
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        if (window.confirm('ARe you sure?')) {
+        if (window.confirm('Are you sure?')) {
             dispatch(logout())
             window.localStorage.removeItem('token')
             navigate('/')
@@ -27,14 +27,14 @@ function Navbar() {
                 </Link>
                 <div className="d-md-block d-none">
                     {
-                        !!user ?
-                        <div className="d-flex align-items-center  justify-content-center ">
+                        user ?
+                        <div className="d-flex align-items-center justify-content-center ">
                             <div className="text-primary text-decoration-none d-flex align-text-center-align-content-center">
                                 <FaUserAlt className="me-2 mt-2 fs-5" />
-                                <h4 className="mt-2 me-5 fs-5 lead fw-bold">{user.username}</h4>
+                                <h4 className="mt-2 me-5 fs-5 lead fw-bold">{user?.username}</h4>
                             </div>
                             <div className="px-4 rounded-pill">
-                                <button className="btn-primary text-white lead fw-bold" onClick={handleLogout}>
+                                <button className="btn btn-primary text-white lead fw-bold" onClick={handleLogout}>
                                     <FaSignOutAlt className="me-2"/> Sign Out
                                 </button>
                             </div>
@@ -60,12 +60,10 @@ function Navbar() {
                                 <li className="dropdown-item text-secondary fw-bold fs-6"><FaHome className="me-2" />Home</li>
                             </Link>
                             {
-                                !!user ?
+                                user ?
                                 <>
-                                    <div className="text-primary text-decoration-none">
-                                        <li className="dropdown-item text-secondary fw-bold fs-6">
-                                            <FaUserAlt className="me-2" /> {user.username}
-                                        </li>
+                                    <div className="dropdown-item text-secondary fw-bold fs-6" onClick={handleLogout}>
+                                        <FaUserAlt className="me-2" />  {user?.username}
                                     </div>
                                     <div className="dropdown-item text-secondary fw-bold fs-6" onClick={handleLogout}>
                                         <FaSignOutAlt className="me-2" /> Sign Out

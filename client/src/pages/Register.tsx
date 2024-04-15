@@ -5,7 +5,8 @@ import { register } from '../features/authSlice';
 
 function Register() {
     const user = useAppSelector((state) => state.auth.data)
-
+    const error = useAppSelector((state) => state.auth.error)
+    console.log(error)
     const [inputs, setInputs] = useState({
         username: '',
         email: '',
@@ -27,9 +28,9 @@ function Register() {
         
         if (data.payload && 'token' in data.payload) {
             window.localStorage.setItem('token', data.payload.token)
+            navigate('/')
         }
 
-        navigate('/')
     }
 
     if (user && window.localStorage.getItem('token')) {
@@ -45,15 +46,45 @@ function Register() {
 
                         <div className="mb-3">
                             <input type="text" placeholder="Username" className="form-control" name="username" value={inputs.username} onChange={handleChange} required />
+                            {
+                                error && Array.isArray(error) && error.some(err => err.path === 'username') &&(
+                                    <div className="alert alert-danger">{
+                                        error.find(err => err.path === 'username').msg
+                                    }</div>
+                                )
+                            }
                         </div>
 
                         <div className="mb-3">
                             <input type="email" placeholder="Email Address" className="form-control" name="email" value={inputs.email} onChange={handleChange} required />
+                            {
+                                error && Array.isArray(error) && error.some(err => err.path === 'email') &&(
+                                    <div className="alert alert-danger">{
+                                        error.find(err => err.path === 'email').msg
+                                    }</div>
+                                )
+                            }
                         </div>
 
                         <div className="mb-3">
                             <input type="password" placeholder="Password" className="form-control" name="password" value={inputs.password} onChange={handleChange} required />
+                            {
+                                error && Array.isArray(error) && error.some(err => err.path === 'password') && (
+                                    <div className="alert alert-danger">{
+                                        error.find(err => err.path === 'password').msg
+                                    }</div>
+                                )
+                            }
                         </div>
+
+
+                        {
+                            error && typeof error === 'string' && error === 'Already created an account' &&(
+                                <div className="alert alert-danger">{
+                                    error
+                                }</div>
+                            )
+                        }
 
                         <div className="mb-4">
                             <p>Already a Member? <Link to="/login">Sign In</Link></p>

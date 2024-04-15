@@ -39,7 +39,7 @@ const login = async (req, res) => {
 
         if (!user) {
             return res.status(404).json({
-                message: 'User is not found'
+                message: 'Username or Password is incorrect'
             })
         }
 
@@ -47,7 +47,7 @@ const login = async (req, res) => {
 
         if (!isValidPw) {
             return res.status(400).json({
-                message: 'Password is incorrect'
+                message: 'Username or Password is incorrect'
             })
         }
 

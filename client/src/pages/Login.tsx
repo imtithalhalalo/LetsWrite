@@ -11,6 +11,9 @@ function Login() {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const user = useAppSelector((state) => state.auth.data);
+    const error = useAppSelector((state) => state.auth.error);
+
+    console.log(error)
 
     const handleChange = (e: any) => {
         setInputs((prev) => ({
@@ -25,9 +28,10 @@ function Login() {
         
         if (data.payload && 'token' in data.payload) {
             window.localStorage.setItem('token', data.payload.token)
+            navigate('/')
         }
 
-        navigate('/')
+        
     }
 
     if (user && window.localStorage.getItem('token')) {
@@ -48,6 +52,12 @@ function Login() {
                         <div className="mb-3">
                             <input type="password" placeholder="Password" className="form-control" name="password" value={inputs.password} onChange={handleChange} required />
                         </div>
+                        
+                        {
+                            error && typeof error === 'string' && (
+                                <div className="alert alert-danger">{error}</div>
+                            )
+                        }
 
                         <div className="mb-4">
                             <p>Not a Member? <Link to="/register">Sign Up</Link></p>

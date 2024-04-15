@@ -7,6 +7,6 @@ exports.registerValidation = [
 ]
 
 exports.loginValidation = [
-    body("email", "Not a valid email").isEmail(),
-    body('password', 'Password is too short, at least 8 charachters').isLength({ min: 8 })
+    body("email", "Email or Password is wrong"),
+    body('password', 'Email or Password is wrong')
 ]
