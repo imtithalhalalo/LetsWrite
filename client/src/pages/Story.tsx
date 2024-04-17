@@ -1,9 +1,10 @@
 import { FaEye } from "react-icons/fa"
 import DefaultPoster from "../assets/poster.jpg"
-import { useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import axios from '../axios'
-import { useAppSelector } from "../app/hooks"
+import { useAppDispatch, useAppSelector } from "../app/hooks"
+import { deleteStory } from "../features/storiesSlice"
 
 function Story() {
     const { id } = useParams();
@@ -14,10 +15,20 @@ function Story() {
         title: '',
         author: { username: '', _id: '' },
         text: '',
-        views: 0
+        views: 0,
+        _id: ''
     })
     const [loading, setLoading] = useState(true)
+    const dispatch = useAppDispatch()
+    const navigate = useNavigate()
 
+
+    const handleDelete = async (id: string) => {
+        if (window.confirm('Are you sure ?')) {
+            await dispatch(deleteStory(id))
+            navigate('/')
+        }
+    }
     useEffect(() => {
         axios.get(`/api/stories/${id}`)
         .then((res) => {
@@ -45,17 +56,19 @@ function Story() {
                     </div>
                     <h2 className="lead fw-bold mt-5">{story.title}</h2>
                     {
-                        user._id === story.author._id ?
+                        user && user._id === story.author._id ?
                         (
                             <div className="mt-3">
                                 <div className="d-flex flex-row justify-content-center text-center">
                                     <div>
-                                        <button className="btn btn-secondary">
-                                            Edit
-                                        </button>
+                                        <Link to={`/update/${story._id}`}>
+                                            <button className="btn btn-secondary">
+                                                Edit
+                                            </button>
+                                        </Link>
                                     </div>
                                     <div>
-                                        <button className="btn btn-danger ms-2">
+                                        <button className="btn btn-danger ms-2" onClick={() => handleDelete(story._id)}>
                                             Delete
                                         </button>
                                     </div>
