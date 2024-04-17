@@ -7,6 +7,11 @@ export const fetchStories = createAsyncThunk('/stories/fetchStories',async () =>
 
     return data
 })
+
+export const deleteStory = createAsyncThunk('/stories/deleteStory',async (id: any) => {
+    await axios.delete(`/api/stories/${id}`)
+})
+
 export const initialStoriesState = {
     stories: [],
     status: 'loading'
@@ -28,6 +33,9 @@ const storiesSlice = createSlice({
             .addCase(fetchStories.fulfilled, (state, action) => {
                 state.stories = action.payload;
                 state.status = 'success';
+            })
+            .addCase(deleteStory.pending, (state, action) => {
+                state.stories = state.stories.filter((story: any) => story._id !== action.meta.arg);
             })
     },
     reducers: {}
