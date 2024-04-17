@@ -1,4 +1,49 @@
+import { useState, useRef } from 'react'
+import { useAppSelector } from '../app/hooks'
+import { Navigate, useNavigate } from 'react-router-dom'
+import axios from '../axios'
+
 function Write() {
+    const user = useAppSelector((state) => state.auth.data);
+
+    const [title, setTitle] = useState('');
+    const [text, setText] = useState('');
+    const [poster, setPoster] = useState('');
+    const inputRef: any = useRef(null)
+
+    if (!user && !window.localStorage.getItem('token')) {
+        window.alert('You should login first!')
+        return <Navigate to="/login" />
+    }
+
+    const handleFile = async (e: any) => {
+        e.preventDefault();
+
+        try {
+            const formData = new FormData()
+            const file = e.target.files[0]
+            formData.append('story-poster', file)
+            const { data } = await axios.post('/poster', formData)
+            setPoster(data.URL)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e: any) => {
+        e.preventDefault();
+
+        await axios.post('/api/stories', { title, text, poster })
+
+        navigate('/')
+    }
+
+    const handleRemove = () => {
+        setPoster('')
+    }
+
     return (
         <div className="container-lg my-5">
             <div className="row justify-content-center">
@@ -11,19 +56,38 @@ function Write() {
 
             <div className="row justify-content-center text-center">
 
-                <form encType="multipart/form-data">
-
+                <form onSubmit={handleSubmit} encType="multipart/form-data">
+                    {
+                        poster && (
+                        <div className="d-flex flex-column mb-3">
+                            <div className="mb-3">
+                                <button className="btn btn-danger" onClick={handleRemove}>
+                                    Remove
+                                </button>
+                            </div>
+                            <div className="mb-3">
+                                <img src={`http://localhost:5000/${poster}`} alt="poster" width={200} height={300}/>
+                            </div>
+                        </div>
+                    )}
                     <div className="mb-5 rounded">
-                        <input name="story-poster" type="file" hidden />
-                        <button className="btn btn-secondary">Upload Image</button>
+                        <input name="story-poster" type="file" ref={inputRef} onChange={handleFile} hidden />
+                        <button 
+                            className="btn btn-secondary" 
+                            onClick={(e) => {
+                                e.preventDefault()
+                                inputRef?.current?.click()
+                            }}>
+                                Upload Image
+                            </button>
                     </div>
 
                     <div className="mb-3 rounded">
-                        <input type="text" placeholder="Title" className="form-control" required />
+                        <input type="text" placeholder="Title" className="form-control" required value={title} onChange={(e) => setTitle(e.target.value)}/>
                     </div>
 
                     <div className="mb-3 rounded">
-                        <textarea rows={20} cols={50000} placeholder="Story" className="form-control" required ></textarea>
+                        <textarea rows={20} cols={50000} placeholder="Story" className="form-control" required value={text} onChange={(e) => setText(e.target.value)}></textarea>
                     </div>
 
                     <div className="mb-3 rounded">
