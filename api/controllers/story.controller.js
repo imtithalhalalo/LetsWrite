@@ -58,7 +58,7 @@ const getStory = async (req, res) => {
             { _id: storyId },
             { $inc: { views: 1 }},
             { returnDocument: 'after' }
-        )
+        ).populate('author', '-password').exec()
 
         if (!story) {
             return res.status(404).json({ message: 'Story is not found' })
