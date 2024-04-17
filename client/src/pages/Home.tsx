@@ -26,10 +26,8 @@ const Home = () => {
                 <div className="col-md-6 mt-5 mt-md-0 order-md-first">
                     <div>
                         <h1 className="text-info text-uppercase fs-1 fw-bold">Write Your Own Stories And Share it with Everyone!</h1>
-                        <p className="mt-4 text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, tenetur
-                            sequi odit ipsam iusto cupiditate totam aut eligendi dolorem vero, repudiandae magni laudantium
-                            illum impedit nulla quis et, at omnis?</p>
-                        <Link to="/write"><button className="btn btn-info px-3 my-3 fw-bold">Write a Story</button></Link>
+                        <p className="mt-4 text-muted">Welcome to StoryScape, where every click opens a door to a new world of stories. Dive into a universe of imagination, where words paint vivid landscapes and characters come to life with every turn of the page. Whether you're a seasoned reader or just starting your literary journey, StoryScape offers something for everyone. Explore genres, discover new authors, and immerse yourself in tales that will capture your heart and mind. Join our community of storytellers and readers, and embark on an adventure that knows no bounds. Start your journey today with StoryScape where stories await at every corner.</p>
+                        <Link to="/write"><button className="btn btn-info px-3 my-3 fw-bold text-white">Write a Story</button></Link>
                     </div>
                 </div>
             </div>
