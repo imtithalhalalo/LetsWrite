@@ -1,6 +1,6 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useAppSelector } from '../app/hooks'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import axios from '../axios'
 
 function Write() {
@@ -9,7 +9,11 @@ function Write() {
     const [title, setTitle] = useState('');
     const [text, setText] = useState('');
     const [poster, setPoster] = useState('');
-    const inputRef: any = useRef(null)
+    const inputRef: any = useRef(null);
+    const [loading, setLoading] = useState(false);
+
+    const { id } = useParams();
+    const isUpdate = Boolean(id);
 
     if (!user && !window.localStorage.getItem('token')) {
         window.alert('You should login first!')
@@ -34,15 +38,35 @@ function Write() {
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
+        try {
+            setLoading(true)
+            isUpdate ? await axios.put(`/api/stories/${id}`, { title, text, poster })
+            :
+            await axios.post('/api/stories', { title, text, poster })
 
-        await axios.post('/api/stories', { title, text, poster })
-
-        navigate('/')
+            navigate('/')
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const handleRemove = () => {
         setPoster('')
     }
+
+    useEffect(() => {
+        if (id) {
+            axios.get(`/api/stories/${id}`)
+            .then(({ data }) => {
+                setTitle(data.title)
+                setText(data.text)
+                setPoster(data.poster)
+            })
+            .catch((error: any) => {
+                console.log(error)
+            })
+        }
+    }, [ id ])
 
     return (
         <div className="container-lg my-5">
