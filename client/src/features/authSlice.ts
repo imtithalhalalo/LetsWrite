@@ -72,6 +72,7 @@ const authReducer = createSlice({
             })
             .addCase(register.fulfilled, (state, action) => {
                 state.data = action.payload;
+                state.error = '';
                 state.status = 'success';
             })
             .addCase(login.pending, (state) => {
@@ -84,6 +85,7 @@ const authReducer = createSlice({
             })
             .addCase(login.fulfilled, (state, action) => {
                 state.data = action.payload;
+                state.error = '';
                 state.status = 'success';
             })
             .addCase(account.pending, (state) => {
@@ -96,6 +98,7 @@ const authReducer = createSlice({
             })
             .addCase(account.fulfilled, (state, action) => {
                 state.data = action.payload;
+                state.error = '';
                 state.status = 'success';
             })
     },
