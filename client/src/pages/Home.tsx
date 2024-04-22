@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import HeroImg from '../assets/home.png'
+import HeroImg from '../assets/home.jpeg'
 import DefaultPoster from '../assets/poster.jpg'
 import { useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../app/hooks";
@@ -20,7 +20,7 @@ const Home = () => {
             <div className="row align-items-center align-content-center">
                 <div className="col-md-6 mt-5 mt-md-0">
                     <div className="text-center">
-                        <img src={HeroImg} alt="" className="img-fluid" height="350px" width="450px" />
+                        <img src={HeroImg} alt="" className="img-fluid rounded-5 " height="350px" width="450px" />
                     </div>
                 </div>
                 <div className="col-md-6 mt-5 mt-md-0 order-md-first">

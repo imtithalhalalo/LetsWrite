@@ -29,12 +29,12 @@ function Navbar() {
                     {
                         user ?
                         <div className="d-flex align-items-center justify-content-center ">
-                            <div className="text-primary text-decoration-none d-flex align-text-center-align-content-center">
+                            <div className="text-info text-decoration-none d-flex align-text-center-align-content-center">
                                 <FaUserAlt className="me-2 mt-2 fs-5" />
                                 <h4 className="mt-2 me-5 fs-5 lead fw-bold">{user?.username}</h4>
                             </div>
                             <div className="px-4 rounded-pill">
-                                <button className="btn btn-primary text-white lead fw-bold" onClick={handleLogout}>
+                                <button className="btn btn-info text-white lead fw-bold" onClick={handleLogout}>
                                     <FaSignOutAlt className="me-2"/> Sign Out
                                 </button>
                             </div>
